@@ -6,7 +6,7 @@ An unofficial personal fan adventure: Skyrim's villages and cities reimagined as
 
 Download `play/Riverwood-Adventure.html` for the original Riverwood adventure, or `play/Skymon-Journeys.html` for the expanded game. Open the downloaded HTML file in a desktop browser. Click **Begin adventure** to enable music. The HTML files include the game engine, art generator, music and all game logic; no login or game server is required.
 
-The expansion is under active testing. It includes Whiterun, Riften, two countryside maps, nine companion species, capture encounters, three-companion parties, gym apprentices and leaders, badge rewards, and distinctive interiors. See `STATUS.md` for verified checks and remaining work.
+The expanded release includes Whiterun, Riften, two countryside maps, nine companion species, capture encounters, three-companion parties, gym apprentices and leaders, badge rewards, and distinctive interiors. See `STATUS.md` for the checks completed and remaining device-verification limits.
 
 ## Controls
 

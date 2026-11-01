@@ -6,7 +6,7 @@ export function parseSave(raw:string|null):SaveData|null { try {const s=JSON.par
  if(!d.companions.some((c:Companion)=>c.id==='chicken'))d.companions.unshift(newCompanion('chicken',d.level));d.companions=d.companions.filter((c:Companion,i:number,arr:Companion[])=>arr.findIndex(a=>a.id===c.id)===i);
  d.party=Array.isArray(s.party)?Array.from(new Set(s.party.filter((id:string)=>d.companions.some((c:Companion)=>c.id===id)))).slice(0,3):['chicken'];if(!d.party.length)d.party=['chicken'];
  d.orbs=Number.isFinite(s.orbs)?Math.max(0,Math.floor(s.orbs)):12;d.badges=Array.isArray(s.badges)?s.badges.filter((x:string)=>['Skyforge Badge','Riftwater Badge'].includes(x)):[];d.discoveries=Array.isArray(s.discoveries)?s.discoveries.filter((x:unknown)=>typeof x==='string'):[];
- if(!s.journey||typeof s.journey.place!=='string'||!Number.isFinite(s.journey.x)||!Number.isFinite(s.journey.y))d.journey=freshSave().journey;d.gymWins=s.gymWins&&typeof s.gymWins==='object'?s.gymWins:{};
+ const fallback=freshSave().journey;const j=s.journey;d.journey=j&&typeof j.place==='string'&&Number.isFinite(j.x)&&Number.isFinite(j.y)?{place:j.place,x:j.x,y:j.y,outside:typeof j.outside==='string'?j.outside:fallback.outside,returnX:Number.isFinite(j.returnX)?j.returnX:fallback.returnX,returnY:Number.isFinite(j.returnY)?j.returnY:fallback.returnY}:fallback;d.gymWins=Object.fromEntries(['whiterun','riften'].filter(id=>Number.isFinite(s.gymWins?.[id])).map(id=>[id,Math.max(0,Math.floor(s.gymWins[id]))]));if(typeof d.area!=='string')d.area='Riverwood';
  return d;}catch{return null;} }
 export let state:SaveData=freshSave();
 export function replaceState(next:SaveData){state=next;}
